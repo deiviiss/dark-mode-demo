@@ -1,0 +1,360 @@
+/*
+#  ·················
+#    _______________
+#   /·___/·___/·___/
+#  /·/__(__··|__··)
+#  \___/____/____/
+#  ·················
+*/
+
+/* Variables */
+
+:root {
+  --lime-green: hsl(163, 72%, 41%);
+  --bright-red: hsl(356, 69%, 56%);
+
+  --facebook: #168ef4;
+  --twitter: hsl(203, 89%, 53%);
+  --instagram1: hsl(37, 97%, 70%);
+  --instagram2: hsl(329, 70%, 58%);
+  --youtube: hsl(348, 97%, 39%);
+
+  --gray: #5f616d;
+  --lightGray: #f8f9fe;
+  --cardGray: #f0f3fa;
+  --cardTitle: #6f717e;
+
+  --black: #1d2029;
+  --white: #fefefe;
+
+  //switchButton:#fefefe
+  --switch: #5f626d;
+
+  --test: 1px solid yellow;
+}
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+
+  background: var(--white);
+  color: var(--black);
+}
+
+.wrapper {
+  padding: 0 30px;
+}
+
+.grid {
+  display: grid;
+  grid-row-gap: 25px; //espaciado que hay en las filas
+}
+
+.darkmode {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1em;
+
+  // input tipo check
+  .checkbox {
+    display: none;
+  }
+
+  /* condición para checar estado del input */
+  .checkbox:checked ~ .switch:before {
+    /* si el selector hermano está chequeado, con ~ indico el hermano */
+    transform: translateX(0);
+  }
+
+  .switch {
+    display: block;
+    background: var(--switch);
+
+    height: 40px;
+    width: 80px;
+    border-radius: 20px;
+    padding: 5px;
+    box-sizing: border-box; //para que no se salga sin hacer mas grande el elemento
+    cursor: pointer;
+    user-select: none; //evita que se seleccione otro elemento al hacer multiples click
+  }
+
+  .switch::before {
+    content: ""; //crea un elemento encima
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--white);
+
+    /* mueve el elemento */
+    transform: translateX(40px);
+    transition: 0.3s;
+    will-change: transition;
+  }
+}
+
+//=======================  header
+.header {
+  // border: $test blue;
+  // display: none;
+  background: var(--cardGray);
+  padding-bottom: 100px;
+  border-radius: 0 0 20px 20px;
+  padding-top: 2em;
+
+  h1 {
+    margin: 0;
+    font-size: 1.7em;
+  }
+
+  .header-total {
+    color: var(--gray);
+    margin: 0.5em 0;
+    font-weight: 700;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid var(--gray);
+  }
+}
+
+//=======================  cards
+.top-cards {
+  // border: $test red;
+  // display: none;
+  margin-top: -50px;
+  margin-bottom: 3em;
+
+  .card {
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--cardGray);
+    // background: red;
+    text-align: center;
+    padding: 1.7em 0;
+    position: relative;
+
+    .card-title {
+      // border: $test;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cardTitle);
+      // background: blue;
+      font-size: 0.9em;
+      font-weight: 700;
+
+      img {
+        margin-right: 5px;
+      }
+    }
+
+    .card-followers {
+      // border: $test purple;
+
+      .card-followers-number {
+        // border: $test red;
+        font-size: 50px;
+        font-weight: 700;
+      }
+
+      .card-followers-title {
+        // border: $test green;
+        display: block;
+        text-transform: uppercase;
+        color: var(--cardTitle);
+        letter-spacing: 5px;
+        font-size: 0.75em;
+      }
+    }
+
+    .card-today {
+      margin-top: 20px;
+      color: var(--lime-green);
+      font-size: 0.7em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .card:before {
+    content: "";
+    height: 4px;
+    display: block;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  .card.facebook::before {
+    background: var(--facebook);
+  }
+
+  .card.twitter::before {
+    background: var(--twitter);
+  }
+
+  .card.instagram::before {
+    background-image: linear-gradient(
+      to right,
+      var(--instagram1) 0%,
+      var(--instagram2) 100%
+    );
+  }
+
+  .card.youtube::before {
+    background: var(--youtube);
+  }
+}
+
+//=======================  overview
+.overview {
+  // border: $test yellow;
+  // margin-bottom: 1000px;
+  padding-bottom: 2em;
+
+  h2 {
+    color: var(--gray);
+  }
+
+  .card-small {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // 1 indica el ancho de la columna y fr el número de columnas
+    grid-row-gap: 1em; // el espacio entre filas
+    background: var(--cardGray);
+    border-radius: 8px;
+    padding: 1.7em;
+
+    p {
+      margin: 0;
+    }
+
+    .card-small-views {
+      // border: $test red;
+      font-size: 0.9em;
+      font-weight: 700;
+      color: var(--cardTitle);
+    }
+
+    .card-small-icon {
+      // border: $test red;
+      text-align: right;
+    }
+
+    .card-small-number {
+      // border: $test red;
+      font-weight: 700;
+      font-size: 2.5em;
+      line-height: 0.9;
+    }
+
+    .card-small-percentage {
+      // border: $test red;
+      text-align: right;
+      display: flex;
+      color: var(--lime-green);
+      justify-content: flex-end;
+      align-items: flex-end;
+      font-size: 0.8em;
+      font-weight: 700;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+
+      img {
+        margin-right: 5px;
+      }
+    }
+
+    .card-small-percentage.is-danger {
+      color: var(--bright-red);
+    }
+  }
+}
+
+//=======================  media query
+@media screen and (min-width: 480px) {
+  .wrapper {
+    max-width: 1440px;
+    margin: auto;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr; // 1 indica el ancho de la columna y fr el número de columnas
+    grid-column-gap: 25px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr; // 1 indica el ancho de la columna y fr el número de columnas
+    grid-column-gap: 25px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr; // 1 indica el ancho de la columna y fr el número de columnas
+    grid-column-gap: 25px;
+  }
+
+  .header-grip {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+  }
+
+  .header-grip .header-total {
+    border: none;
+  }
+}
+
+.is-dark-mode {
+  --cardGray: #252b43;
+  --black: #fefefe;
+  --white: #1d2029;
+  --gray: #8088ad;
+  --lightGray: #1d2029;
+  --cardTitle: #8088ad;
+
+  --switch: linear-gradient(to right, #4796d2 0%, #37ce8f 100%);
+}
+
+.is-light-mode {
+  --gray: #5f616d;
+  --lightGray: #f8f9fe;
+  --cardGray: #f0f3fa;
+  --cardTitle: #6f717e;
+
+  --black: #1d2029;
+  --white: #fefefe;
+
+  --switch: #5f626d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cardGray: #252b43;
+    --black: #fefefe;
+    --white: #1d2029;
+    --gray: #8088ad;
+    --lightGray: #1d2029;
+    --cardTitle: #8088ad;
+
+    --switch: linear-gradient(to right, #4796d2 0%, #37ce8f 100%);
+  }
+}
